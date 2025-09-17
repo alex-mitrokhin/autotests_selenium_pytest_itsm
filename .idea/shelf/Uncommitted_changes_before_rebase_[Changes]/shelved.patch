@@ -1,0 +1,1298 @@
+Index: pages/login_page.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/login_page.py b/pages/login_page.py
+new file mode 100644
+--- /dev/null	(date 1758096475487)
++++ b/pages/login_page.py	(date 1758096475487)
+@@ -0,0 +1,40 @@
++from pages.base_page import BasePage
++from pages.locators import LoginPageLocators
++from data.config import Config
++from selenium.webdriver.support import expected_conditions as EC
++from selenium.webdriver.support.wait import WebDriverWait
++
++class LoginPage(BasePage):
++
++    def open_url(self):
++        self.driver.get(Config.BASE_URL)
++
++    def email_click(self):
++        return self.click(LoginPageLocators.EMAIL_BUTTON)
++
++    def email_input(self):
++        return self.input_text(LoginPageLocators.USER_EMAIL, Config.USERNAME)
++
++    def continue_click(self):
++        return self.click(LoginPageLocators.CONTINUE_BUTTON)
++
++    def password_input(self):
++        return self.input_text(LoginPageLocators.USER_PASSWORD, Config.PASSWORD)
++
++    def sign_in_click(self):
++        return self.click(LoginPageLocators.SIGN_IN_BUTTON)
++
++    def title_contains(self):
++        return WebDriverWait(self.driver, 10).until(EC.title_contains('Мои входящие | ДИТ. Сервис-менеджер'))
++
++    def login(self):
++        """Полный процесс логина"""
++        self.open_url()
++        self.email_click()
++        self.email_input()
++        self.continue_click()
++        self.password_input()
++        self.sign_in_click()
++        assert self.title_contains(), 'Логин не выполнен!'
++        print("Логин выполнен успешно")
++        return self
+\ No newline at end of file
+Index: pages/requests_page.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/requests_page.py b/pages/requests_page.py
+new file mode 100644
+--- /dev/null	(date 1757680574520)
++++ b/pages/requests_page.py	(date 1757680574520)
+@@ -0,0 +1,72 @@
++from pages.common_methods import CommonMethods
++from pages.locators import RequestsPageLocators
++from selenium.webdriver.support import expected_conditions as EC
++from selenium.webdriver.support.wait import WebDriverWait
++from selenium.common.exceptions import TimeoutException
++
++class RequestsPage(CommonMethods):
++
++    def service_desk_click(self):
++        return self.click(RequestsPageLocators.BUTTON_SERVICE_DESC)
++
++    def open_request_for_myself_click(self):
++        return self.click(RequestsPageLocators.OPEN_REQUEST_FOR_MYSELF)
++
++    def select_domain_gu_moscow_ext_click(self):
++        return self.click(RequestsPageLocators.DOMAIN_GU_MOSCOW_EXT_CONTR)
++
++    def select_service_click(self):
++        return self.click(RequestsPageLocators.SERVICE_PZPP)
++
++    def select_service_instance_click(self):
++        return self.click(RequestsPageLocators.SERVICE_INSTANCE_PZPP)
++
++    def select_template_click(self):
++        return self.click(RequestsPageLocators.SELECT_TEMPLATE)
++
++    def note_request_input(self, text="Комментарий"):
++        return self.input_text(RequestsPageLocators.INPUT_NOTE_REQUEST, text)
++
++    def select_impact(self):
++        return self.select_by_visible_text(RequestsPageLocators.DROPDOWN_IMPACT,
++                                           "Низкое - ухудшение услуги для одного пользователя")
++
++    def description_ui_click(self):
++        return self.click(RequestsPageLocators.BUTTON_DESCRIPTION_UI)
++
++    def description_input(self, text="Комментарий"):
++        return self.input_text(RequestsPageLocators.INPUT_FIELD_DESCRIPTION, text)
++
++    def accept_request(self):
++        return self.click(RequestsPageLocators.BUTTON_ACCEPT_REQUEST)
++
++    def start_request(self):
++        return self.click(RequestsPageLocators.BUTTON_START_REQUEST)
++
++    def complete_request(self):
++        return self.click(RequestsPageLocators.BUTTON_COMPLETE_REQUEST)
++
++    def select_status_dropdown(self):
++        return self.select_by_visible_text(RequestsPageLocators.DROPDOWN_STATUS, "Завершено")
++
++    def select_reason_dropdown(self):
++        return self.select_by_visible_text(RequestsPageLocators.DROPDOWN_REASON, "Решено - анализ не требуется")
++
++    def get_status_text(self):
++        status_element = self.find_element(RequestsPageLocators.STATUS_REQUEST)
++        return status_element.text
++
++    def wait_for_status(self, expected_status, timeout=15):
++        try:
++            WebDriverWait(self.driver, timeout).until(
++                EC.text_to_be_present_in_element(RequestsPageLocators.STATUS_REQUEST, expected_status)
++            )
++            print(f"Статус успешно изменился на: {expected_status}")
++            return True
++        except TimeoutException:
++            print(f"Статус не изменился на: {expected_status} в течение {timeout} секунд")
++            return False
++
++    def complete_request_save(self):
++        """Специфичный метод сохранения для заявок"""
++        return self.complete_save_operation(RequestsPageLocators.STATUS_REQUEST)
+\ No newline at end of file
+Index: pages/projects_page.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/projects_page.py b/pages/projects_page.py
+new file mode 100644
+--- /dev/null	(date 1758007511591)
++++ b/pages/projects_page.py	(date 1758007511591)
+@@ -0,0 +1,70 @@
++from pages.locators import ProjectsPageLocators, CommonLocators
++from pages.common_methods import CommonMethods
++
++class ProjectsPage(CommonMethods):
++
++    def add_project_click(self):
++        return self.click(CommonLocators.BUTTON_ADD)
++
++    def subject_project_input(self, text="Тестовый"):
++        return self.input_text(ProjectsPageLocators.INPUT_SUBJECT_PROJECT, text)
++
++    def service_project_input(self, text="ПЗПП. ПП. Управление знаниями"):
++        return self.input_text(ProjectsPageLocators.INPUT_SERVICE_PROJECT, text)
++
++    def service_project_click(self):
++        return self.click(ProjectsPageLocators.BUTTON_SELECT_SERVICE_PROJECT)
++
++    def program_project_input(self, text="1"):
++        return self.input_text(ProjectsPageLocators.INPUT_PROGRAM_PROJECT, text)
++
++    def program_project_click(self):
++        return self.click(ProjectsPageLocators.BUTTON_SELECT_PROGRAM_PROJECT)
++
++    def customer_project_input(self, text="ДИТ. Госуслуги Москвы.Внешние подрядчики"):
++        return self.input_text(ProjectsPageLocators.INPUT_CUSTOMER_PROJECT, text)
++
++    def customer_project_click(self):
++        return self.click(ProjectsPageLocators.BUTTON_SELECT_CUSTOMER_PROJECT)
++
++    def select_justification(self):
++        return self.select_by_visible_text(ProjectsPageLocators.DROPDOWN_JUSTIFICATION_PROJECT, "Соответствие")
++
++    def get_status_project_text(self):
++        status_element = self.find_element(ProjectsPageLocators.PROJECT_STATUS)
++        return status_element.text
++
++    def complete_project_save(self):
++        """Специфичный метод сохранения для проектов"""
++        return self.complete_save_operation(ProjectsPageLocators.PROJECT_STATUS)
++
++    def add_invoice_click(self):
++        return self.click(ProjectsPageLocators.BUTTON_ADD_INVOICE)
++
++    def subject_invoice_click(self):
++        return self.click(ProjectsPageLocators.SUBJECT_INVOICE)
++
++    def invoice_number_input(self, text=777777):
++        return self.input_text(ProjectsPageLocators.INPUT_INVOICE_NUMBER, text)
++
++    def invoice_unit_price_input(self, text=1234):
++        return self.input_text(ProjectsPageLocators.INPUT_INVOICE_UNIT_PRICE, text)
++
++    def invoice_quantity_input(self, text=98):
++        return self.input_text(ProjectsPageLocators.INPUT_INVOICE_QUANTITY, text)
++
++    def invoice_supplier_input(self, text='ДИТ. Госуслуги Москвы.Внешние подрядчики'):
++        return self.input_text(ProjectsPageLocators.INPUT_INVOICE_SUPPLIER, text)
++
++    def invoice_supplier_click(self):
++        return self.click(ProjectsPageLocators.BUTTON_SELECT_INVOICE_SUPPLIER)
++
++    def invoice_date_input_js(self, date = "31/08/2025"):
++        return self.input_date_via_js(ProjectsPageLocators.INPUT_INVOICE_DATE, date)
++
++    def get_invoice_amount_text(self):
++        invoice_amount = self.find_element(ProjectsPageLocators.INVOICE_AMOUNT)
++        return invoice_amount.text
++
++
++
+Index: pages/records_page.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/records_page.py b/pages/records_page.py
+new file mode 100644
+--- /dev/null	(date 1758008379998)
++++ b/pages/records_page.py	(date 1758008379998)
+@@ -0,0 +1,29 @@
++from pages.common_methods import CommonMethods
++from pages.locators import RecordsPageLocators, CommonLocators
++
++
++class RecordsPage(CommonMethods):
++
++    def records_click(self):
++        return self.click(CommonLocators.BUTTON_RECORDS)
++
++    def requests_click(self):
++        return self.click(RecordsPageLocators.BUTTON_REQUESTS)
++
++    def projects_click(self):
++        return self.click(RecordsPageLocators.BUTTON_PROJECTS)
++
++    def services_click(self):
++        return self.click(RecordsPageLocators.BUTTON_SERVICES)
++
++    def service_instances_click(self):
++        return self.click(RecordsPageLocators.BUTTON_SERVICE_INSTANCES)
++
++    def service_offerings_click(self):
++        return self.click(RecordsPageLocators.BUTTON_SERVICE_OFFERINGS)
++
++    def sla_click(self):
++        return self.click(RecordsPageLocators.BUTTON_SLAS)
++
++    def requested_for_click(self):
++        return self.click(RecordsPageLocators.REQUESTED_FOR)
+Index: pages/common_methods.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/common_methods.py b/pages/common_methods.py
+new file mode 100644
+--- /dev/null	(date 1758008379992)
++++ b/pages/common_methods.py	(date 1758008379992)
+@@ -0,0 +1,92 @@
++from pages.base_page import BasePage
++from pages.locators import ModalWindowLocators, CommonLocators
++from selenium.webdriver.support import expected_conditions as EC
++from selenium.webdriver.support.wait import WebDriverWait
++from selenium.common.exceptions import TimeoutException
++
++class CommonMethods(BasePage):
++
++    def select_account_click(self):
++        return self.click(CommonLocators.BUTTON_SELECT_ACCOUNT)
++
++    def account_name_click(self):
++        return self.click(CommonLocators.BUTTON_ACCOUNT_NAME)
++
++    def button_add_click(self):
++        return self.click(CommonLocators.BUTTON_ADD)
++
++    def button_edit_click(self):
++        return self.click(CommonLocators.BUTTON_EDIT)
++
++    def button_save_click(self):
++        return self.click(CommonLocators.BUTTON_SAVE)
++
++    def processing_modal_window(self):
++        try:
++            modal_window = WebDriverWait(self.driver, 5).until(
++                EC.element_to_be_clickable(ModalWindowLocators.BUTTON_MODAL_OK)
++            )
++            print("Модальное окно появилось, нажимаем OK...")
++            self.driver.execute_script("arguments[0].click();", modal_window)
++
++            # Ждем исчезновения модального окна
++            WebDriverWait(self.driver, 5).until(
++                EC.invisibility_of_element_located(ModalWindowLocators.BUTTON_MODAL_OK)
++            )
++            print("Модальное окно закрыто.")
++            return True
++
++        except TimeoutException:
++            print("Модальное окно не появилось, продолжаем выполнение.")
++            return False
++
++    def wait_for_ajax_complete(self, timeout=10):
++        try:
++            WebDriverWait(self.driver, timeout).until(
++                lambda driver: driver.execute_script(
++                    'return (typeof jQuery !== "undefined") ? jQuery.active == 0 : true'
++                )
++            )
++            print("AJAX-запросы завершены.")
++        except Exception as e:
++            print(f"AJAX-запросы не завершились: {e}")
++
++    def complete_save_operation(self, status_locator):
++        """Оптимизированный процесс сохранения с повторными попытками"""
++
++        max_attempts = 2  # Уменьшим до 2 попыток, так как этого достаточно
++
++        for attempt in range(max_attempts):
++
++            try:
++                self.button_save_click()
++                self.processing_modal_window()
++                self.wait_for_ajax_complete()
++
++                # Проверяем наличие статуса
++                try:
++                    status_element = WebDriverWait(self.driver, 2).until(
++                        EC.visibility_of_element_located(status_locator)
++                    )
++                    print("Элемент статуса найден и видим")
++                    return status_element
++
++                except TimeoutException:
++                    if attempt < max_attempts - 1:
++                        print("Элемент статуса не найден, пробуем снова...")
++                    else:
++                        print("Элемент статуса не найден после всех попыток")
++                        raise
++
++            except Exception as e:
++                print(f"Ошибка в попытке {attempt + 1}: {e}")
++                if attempt == max_attempts - 1:
++                    raise
++
++    def is_button_add_in_form(self):
++        button_add = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(CommonLocators.BUTTON_ADD))
++        return button_add
++
++    def is_table_elements_presents(self):
++        return self.find_elements(CommonLocators.ROWS_IN_FORM)
++
+Index: pages/account_overview_page.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/account_overview_page.py b/pages/account_overview_page.py
+new file mode 100644
+--- /dev/null	(date 1758008380007)
++++ b/pages/account_overview_page.py	(date 1758008380007)
+@@ -0,0 +1,41 @@
++from pages.locators import SettingsPageLocators, CommonLocators
++from pages.common_methods import CommonMethods
++
++class AccountOverviewPage(CommonMethods):
++
++    def settings_click(self):
++        return self.click(CommonLocators.BUTTON_SETTINGS)
++
++    def account_overview_click(self):
++        self.click(SettingsPageLocators.BUTTON_ACCOUNT_OVERVIEW)
++
++    def check_row_values(self):
++        elements = self.find_elements(SettingsPageLocators.ROWS_ACCOUNT_OVERVIEW)
++
++        indexes_to_skip = [2, 11]
++
++        expected_values = {
++            0: "sc-gu",
++            1: "https://sc-gu.itsm-qa.mos.ru",
++            3: "Премиум",
++            4: "Служебная УЗ",
++            5: "ДИТ. Госуслуги Москвы. Внешние подрядчики",
++            6: "RUB Российский рубль",
++            7: "Русский",
++            8: "Москва",
++            9: "24-часа (15:00)",
++            10: "Каталог услуг Правительства Москвы"
++        }
++
++        # Перебираем каждый элемент и проверяем текст
++        for i, element in enumerate(elements):
++            if i in indexes_to_skip:
++                print(f"Пропускаем проверку элемента {i + 1} (индекс {i})")
++                continue
++
++            if i in expected_values:
++                expected = expected_values[i]
++                actual_text = element.text.strip('₽')
++                assert actual_text == expected, f"Элемент {i + 1}: ожидалось '{expected}', получено '{actual_text}'"
++
++
+Index: tests/test_checked_sla.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tests/test_checked_sla.py b/tests/test_checked_sla.py
+new file mode 100644
+--- /dev/null	(date 1758003482493)
++++ b/tests/test_checked_sla.py	(date 1758003482493)
+@@ -0,0 +1,19 @@
++from pages.login_page import LoginPage
++from pages.records_page import RecordsPage
++import time
++
++def test_checked_sla(driver):
++    login_page = LoginPage(driver)
++    records_page = RecordsPage(driver)
++
++    login_page.login()
++    records_page.records_click()
++
++    records_page.sla_click()
++    records_page.select_account_click()
++    records_page.account_name_click()
++
++    assert records_page.is_button_add_in_form(), 'Кнопки "+" на форме нет'
++    assert len(records_page.is_table_elements_presents()) > 0, 'Записей в таблице нет'
++
++    time.sleep(2)
+\ No newline at end of file
+Index: pages/locators.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/locators.py b/pages/locators.py
+new file mode 100644
+--- /dev/null	(date 1758008379984)
++++ b/pages/locators.py	(date 1758008379984)
+@@ -0,0 +1,114 @@
++from selenium.webdriver.common.by import By
++
++class LoginPageLocators:
++    USER_EMAIL = (By.ID, 'user_session_email')
++    USER_PASSWORD = (By.ID, 'user_session_password')
++    EMAIL_BUTTON = (By.ID, 'email-button')
++    CONTINUE_BUTTON = (By.ID, 'continue')
++    SIGN_IN_BUTTON = (By.ID, 'signin')
++
++class RequestsPageLocators:
++    BUTTON_SERVICE_DESC = (By.CLASS_NAME, 'icon-service-desk')
++    OPEN_REQUEST_FOR_MYSELF = (By.XPATH, '//a[text()="Я хочу открыть заявку для себя"]')
++
++    DOMAIN_GU_MOSCOW_EXT_CONTR = (By.XPATH, '//span[text()="ДИТ. Госуслуги Москвы. Внешние подрядчики"]')
++    SERVICE_PZPP = (By.XPATH, '//span[text()="Поддержка ПЗПП"]')
++    SERVICE_INSTANCE_PZPP = (By.XPATH, '//span[text()="ПЗПП. ПА. Управление инцидентами ППО"]')
++    SELECT_TEMPLATE = (By.XPATH, '//a[text()="ПЗПП. Инциденты ППО"]')
++
++    INPUT_NOTE_REQUEST = (By.CSS_SELECTOR, 'div#req_note')
++    DROPDOWN_IMPACT = (By.ID, 'req_impact')
++    BUTTON_DESCRIPTION_UI = (By.CSS_SELECTOR, 'li#tab_1')
++    INPUT_FIELD_DESCRIPTION = (By.CSS_SELECTOR, 'div#ui-extension_description > div > .ProseMirror')
++
++    BUTTON_DECLINE_REQUEST = (By.CSS_SELECTOR, 'div#toolbar_decline')
++    BUTTON_ACCEPT_REQUEST = (By.CSS_SELECTOR, 'div#toolbar_accept')
++    BUTTON_START_REQUEST = (By.CSS_SELECTOR, 'div#toolbar_start')
++    BUTTON_FORWARD_REQUEST = (By.CSS_SELECTOR, 'div#toolbar_forward')
++    BUTTON_COMPLETE_REQUEST = (By.CSS_SELECTOR, 'div#toolbar_complete')
++
++    DROPDOWN_STATUS = (By.ID, 'req_status')
++    DROPDOWN_REASON = (By.ID, 'req_completion_reason')
++
++    STATUS_REQUEST = (By.XPATH, '//div[@class="header_bar_section"][4]/div[@class="data"]')
++
++class ProjectsPageLocators:
++    BUTTON_PROJECTS = (By.CSS_SELECTOR, 'a[href*="/projects"]')
++    INPUT_SUBJECT_PROJECT = (By.CSS_SELECTOR, 'input.title_field')
++
++    INPUT_SERVICE_PROJECT = (By.ID, 'project_service')
++    INPUT_PROGRAM_PROJECT = (By.ID, 'project_program')
++    INPUT_CUSTOMER_PROJECT = (By.ID, 'project_customer')
++
++    DROPDOWN_JUSTIFICATION_PROJECT = (By.ID, 'project_justification')
++
++    BUTTON_SELECT_PROGRAM_PROJECT = (By.CSS_SELECTOR, 'div.head')
++    BUTTON_SELECT_SERVICE_PROJECT = (By.CSS_SELECTOR, 'div.head.strong')
++    BUTTON_SELECT_CUSTOMER_PROJECT = (By.XPATH, '//div[@class="head strong"]//span[starts-with(text(), "ДИТ")]')
++
++    PROJECT_STATUS = (By.XPATH, '//div[@class="header_bar_section"][3]/div[@class="data"]')
++
++    SUBJECT_INVOICE = (By.CSS_SELECTOR, 'span[title*="Тестовый"]')
++
++    BUTTON_ADD_INVOICE = (By.ID, 'invoice_add')
++    INPUT_INVOICE_SUPPLIER = (By.ID, 'invoice_supplier')
++    BUTTON_SELECT_INVOICE_SUPPLIER = (By.CSS_SELECTOR, 'div.head.strong')
++    INPUT_INVOICE_NUMBER = (By.ID,'invoice_invoice_nr')
++    INPUT_INVOICE_UNIT_PRICE = (By.ID, 'invoice_unit_price')
++    INPUT_INVOICE_QUANTITY = (By.ID, 'invoice_quantity')
++    INPUT_INVOICE_DATE = (By.ID, 'invoice_invoice_date_date_str')
++    INVOICE_AMOUNT = (By.CSS_SELECTOR, 'div.invoice.total .amount')
++
++class RecordsPageLocators:
++    BUTTON_REQUESTS = (By.CSS_SELECTOR, 'a[href*="/requests"]')
++    BUTTON_REQUEST_TEMPLATES = (By.CSS_SELECTOR, 'a[href*="/request_templates"]')
++
++    BUTTON_WORKFLOWS = (By.CSS_SELECTOR, 'a[href*="/workflows"]')
++    BUTTON_WORKFLOW_TEMPLATES = (By.CSS_SELECTOR, 'a[href*="/workflow_templates"]')
++    BUTTON_TASK_TEMPLATES = (By.CSS_SELECTOR, 'a[href*="/task_templates"]')
++
++    BUTTON_PROJECTS = (By.CSS_SELECTOR, 'a[href*="/projects"]')
++
++    BUTTON_SERVICES = (By.CSS_SELECTOR, 'a[href*="/services"]')
++    BUTTON_SERVICE_INSTANCES = (By.CSS_SELECTOR, 'a[href*="/service_instances"]')
++    BUTTON_SERVICE_OFFERINGS = (By.CSS_SELECTOR, 'a[href*="/service_offerings"]')
++    BUTTON_SLAS = (By.CSS_SELECTOR, 'a[href*="/slas"]')
++    BUTTON_PRODUCTS = (By.CSS_SELECTOR, 'a[href*="/products"]')
++    BUTTON_CIS = (By.CSS_SELECTOR, 'a[href=*"/cis"]')
++    BUTTON_TEAMS = (By.CSS_SELECTOR, 'a[href*="/teams"]')
++
++    REQUESTED_FOR = (By.CSS_SELECTOR, 'span[title*="Митрохин"]')
++
++class ModalWindowLocators:
++    BUTTON_MODAL_OK = (By.CSS_SELECTOR, 'div.flash-panel-footer > button[aria-label="OK"]')
++
++class CommonLocators:
++    # ===== ЭЛЕМЕНТЫ ПАНЕЛИ ИНСТРУМЕНТОВ СИСТЕМЫ =====
++    BUTTON_RECORDS = (By.CLASS_NAME, 'icon-records')
++    BUTTON_INBOX = (By.CLASS_NAME, 'icon-inbox')
++    BUTTON_SERVICE_DESC = (By.CLASS_NAME, 'icon-service-desk')
++    BUTTON_ANALYTICS = (By.CLASS_NAME, 'icon-analytics')
++    BUTTON_SETTINGS = (By.CLASS_NAME, 'icon-settings')
++
++    # Элементы выбора пространства (домена)
++    BUTTON_SELECT_ACCOUNT = (By.ID, 'account_name')
++    BUTTON_ACCOUNT_NAME = (By.CSS_SELECTOR, 'a[href*="/v/sc-gu/"]')
++
++    # Элементы на верхней панели
++    BUTTON_ADD = (By.CSS_SELECTOR, 'div#toolbar_add')
++    BUTTON_EDIT = (By.CSS_SELECTOR, 'div#toolbar_edit')
++    BUTTON_ACTIONS = (By.CSS_SELECTOR, 'div#toolbar_actions')
++    BUTTON_SAVE = (By.ID, 'save')
++
++    ROWS_IN_FORM = (By.CSS_SELECTOR,'.grid-row')
++
++class SettingsPageLocators:
++    BUTTON_ACCOUNT_OVERVIEW = (By.CSS_SELECTOR, 'ul#settings_menu a[href*="/overview"]')
++    ROWS_ACCOUNT_OVERVIEW = (By.CLASS_NAME, 'row-value')
++
++
++
++
++
++
++
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+--- /dev/null	(date 1758094375504)
++++ b/.gitignore	(date 1758094375504)
+@@ -0,0 +1,1 @@
++.env
+\ No newline at end of file
+Index: pages/methods.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/methods.py b/pages/methods.py
+new file mode 100644
+--- /dev/null	(date 1757664305760)
++++ b/pages/methods.py	(date 1757664305760)
+@@ -0,0 +1,231 @@
++from conftest import driver
++from pages.base_page import BasePage
++from pages.locators import LoginPageLocators, PageLocators
++from data.config import Config
++from selenium.webdriver.support import expected_conditions as EC
++from selenium.webdriver.support.wait import WebDriverWait
++from selenium.common.exceptions import TimeoutException
++
++class Methods(BasePage):
++    ''' Методы для входа в систему '''
++    def __init__(self, driver):
++        super().__init__(driver)
++
++    def open_url(self):
++        self.driver.get(Config.BASE_URL)
++
++    def email_click(self):
++        return self.click(LoginPageLocators.EMAIL_BUTTON)
++
++    def email_input(self):
++        return self.input_text(LoginPageLocators.USER_EMAIL, Config.USERNAME)
++
++    def continue_click(self):
++        return self.click(LoginPageLocators.CONTINUE_BUTTON)
++
++    def password_input(self):
++        return self.input_text(LoginPageLocators.USER_PASSWORD, Config.PASSWORD)
++
++    def sign_in_click(self):
++        return self.click(LoginPageLocators.SIGN_IN_BUTTON)
++
++    def title_contains(self):
++        wait = WebDriverWait(self.driver, 10)
++        return wait.until(EC.title_contains('Мои входящие | ДИТ. Сервис-менеджер'))
++
++
++    ''' Методы для создания/обработки/завершения запроса '''
++    def service_desk_click(self):
++        return self.click(PageLocators.BUTTON_SERVICE_DESC)
++
++    def records_click(self):
++        return self.click(PageLocators.BUTTON_RECORDS)
++
++    def requests_click(self):
++        return self.click(PageLocators.BUTTON_REQUESTS)
++
++    def select_account_click(self):
++        return self.click(PageLocators.BUTTON_SELECT_ACCOUNT)
++
++    def account_name_click(self):
++        return self.click(PageLocators.BUTTON_ACCOUNT_NAME)
++
++    def requested_for_click(self):
++        return self.click(PageLocators.REQUESTED_FOR)
++
++    def edit_req_click(self):
++        return self.click(PageLocators.BUTTON_EDIT)
++
++    def select_status_dropdown(self):
++        return self.select_by_visible_text(PageLocators.DROPDOWN_STATUS, "Завершено")
++
++    def select_reason_dropdown(self):
++        return self.select_by_visible_text(PageLocators.DROPDOWN_REASON, "Решено - анализ не требуется")
++
++    def open_request_for_myself_click(self):
++        return self.click(PageLocators.OPEN_REQUEST_FOR_MYSELF)
++
++    def select_domain_gu_moscow_ext_click(self):
++        return self.click(PageLocators.DOMAIN_GU_MOSCOW_EXT_CONTR)
++
++    def select_service_click(self):
++        return self.click(PageLocators.SERVICE_PZPP)
++
++    def select_service_instance_click(self):
++        return self.click(PageLocators.SERVICE_INSTANCE_PZPP)
++
++    def select_template_click(self):
++        return self.click(PageLocators.SELECT_TEMPLATE)
++
++    def note_request_input(self):
++        return self.input_text(PageLocators.INPUT_NOTE_REQUEST,"Комментарий")
++
++    def select_impact(self):
++        return self.select_by_visible_text(PageLocators.DROPDOWN_IMPACT, "Низкое - ухудшение услуги для одного пользователя")
++
++    def description_ui_click(self):
++        return self.click(PageLocators.BUTTON_DESCRIPTION_UI)
++
++    def description_input(self):
++        return self.input_text(PageLocators.INPUT_FIELD_DESCRIPTION, "Комментарий")
++
++    def button_save_click(self):
++        return self.click(PageLocators.BUTTON_SAVE)
++
++    def processing_modal_window(self):
++        try:
++            # Ждем появление модального окна короткое время
++            modal_window = WebDriverWait(self.driver, 2).until(
++                EC.element_to_be_clickable(PageLocators.BUTTON_MODAL_OK)
++            )
++            print("Модальное окно появилось, нажимаем OK...")
++
++            modal_window.click()
++
++            # Ждем исчезновение модального окна
++            WebDriverWait(self.driver, 2).until(
++                EC.invisibility_of_element_located(PageLocators.BUTTON_MODAL_OK)
++            )
++            print("Модальное окно закрыто.")
++            return True
++
++        except TimeoutException:
++            # Модальное окно не появилось - это нормально
++            print("Модальное окно не появилось, продолжаем выполнение.")
++            return False
++
++        except Exception as e:
++            print(f"Ошибка при обработке модального окна: {e}")
++            return False
++
++    def wait_for_ajax_complete(self):
++        """Ожидает завершения AJAX-запросов"""
++        try:
++            WebDriverWait(self.driver, 5).until(
++                lambda driver: driver.execute_script(
++                    'return (typeof jQuery !== "undefined") ? jQuery.active == 0 : true'
++                )
++            )
++            print("AJAX-запросы завершены.")
++
++        except Exception as e:
++            print(f"AJAX-запросы не завершились: {e}")
++
++
++    def complete_save_operation(self):
++        """Оптимизированный процесс сохранения с повторными попытками"""
++
++        max_attempts = 2  # Уменьшим до 2 попыток, так как этого достаточно
++
++        for attempt in range(max_attempts):
++
++            try:
++                self.button_save_click()
++                self.processing_modal_window()
++                self.wait_for_ajax_complete()
++
++                # Проверяем наличие статуса
++                try:
++                    status_element = WebDriverWait(self.driver, 2).until(
++                        EC.visibility_of_element_located(PageLocators.STATUS_REQUEST)
++                    )
++                    print("Элемент статуса найден и видим")
++                    return status_element
++
++                except TimeoutException:
++                    if attempt < max_attempts - 1:
++                        print("Элемент статуса не найден, пробуем снова...")
++                    else:
++                        print("Элемент статуса не найден после всех попыток")
++                        raise
++
++            except Exception as e:
++                print(f"Ошибка в попытке {attempt + 1}: {e}")
++                if attempt == max_attempts - 1:
++                    raise
++
++    def accept_request(self):
++        """Принимает заявку"""
++        return self.click(PageLocators.BUTTON_ACCEPT_REQUEST)
++
++    def start_request(self):
++        """Начинает работу над заявкой"""
++        return self.click(PageLocators.BUTTON_START_REQUEST)
++
++    def complete_request(self):
++        self.click(PageLocators.BUTTON_COMPLETE_REQUEST)
++
++    def wait_for_status(self, expected_status):
++        """Ожидает определенного статуса"""
++        try:
++            WebDriverWait(self.driver, 10).until(
++                EC.text_to_be_present_in_element(PageLocators.STATUS_REQUEST, expected_status)
++            )
++            return True
++        except TimeoutException:
++            return False
++
++    def get_status_text(self):
++        """Возвращает текст статуса"""
++        status_element = self.find_element(PageLocators.STATUS_REQUEST)
++        return status_element.text
++
++    def projects_click(self):
++        return self.click(PageLocators.BUTTON_PROJECTS)
++
++    def add_project_click(self):
++        self.click(PageLocators.BUTTON_ADD)
++
++    def subject_project_input(self):
++        self.input_text(PageLocators.INPUT_SUBJECT_PROJECT, "Тестовый")
++
++    def service_project_input(self):
++        self.input_text(PageLocators.INPUT_SERVICE_PROJECT, "ПЗПП. ПП. Управление знаниями")
++
++    def service_project_click(self):
++        self.click(PageLocators.BUTTON_SELECT_SERVICE_PROJECT)
++
++    def program_project_input(self):
++        self.input_text(PageLocators.INPUT_PROGRAM_PROJECT, "1")
++
++    def program_project_click(self):
++        self.click(PageLocators.BUTTON_SELECT_PROGRAM_PROJECT)
++
++    def customer_project_input(self):
++        self.input_text(PageLocators.INPUT_CUSTOMER_PROJECT, "ДИТ. Госуслуги Москвы.Внешние подрядчики")
++
++    def customer_project_click(self):
++        self.click(PageLocators.BUTTON_SELECT_CUSTOMER_PROJECT)
++
++    def select_justification(self):
++        return self.select_by_visible_text(PageLocators.DROPDOWN_JUSTIFICATION_PROJECT, "Соответствие")
++
++    def get_status_project_text(self):
++        """Возвращает текст статуса"""
++        status_element = self.find_element(PageLocators.PROJECT_STATUS)
++        return status_element.text
++
++
++
++
++
+Index: tests/tests.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tests/tests.py b/tests/tests.py
+new file mode 100644
+--- /dev/null	(date 1758096447028)
++++ b/tests/tests.py	(date 1758096447028)
+@@ -0,0 +1,199 @@
++from conftest import driver
++from pages.account_overview_page import AccountOverviewPage
++from pages.login_page import LoginPage
++from pages.records_page import RecordsPage
++from pages.requests_page import RequestsPage
++from pages.projects_page import ProjectsPage
++import time
++from data.config import Config
++
++def test_sign_in(driver):
++    login_page = LoginPage(driver)
++    login_page.login()
++
++def test_request_creation_processing_completion(driver):
++    login_page = LoginPage(driver)
++    records_page = RecordsPage(driver)
++    requests_page = RequestsPage(driver)
++
++    # Логин
++    login_page.login()
++
++    # Навигация
++    records_page.records_click()
++    records_page.requests_click()
++    records_page.select_account_click()
++    records_page.account_name_click()
++
++    # Создание заявки
++    requests_page.service_desk_click()
++    requests_page.open_request_for_myself_click()
++    requests_page.select_domain_gu_moscow_ext_click()
++    requests_page.select_service_click()
++    requests_page.select_service_instance_click()
++    requests_page.select_template_click()
++    requests_page.note_request_input("Тестовый комментарий")
++    requests_page.select_impact()
++    requests_page.description_ui_click()
++    requests_page.description_input("Описание проблемы")
++
++    # Сохранение и проверка
++    status_element = requests_page.complete_request_save()
++    assert status_element.text == 'Назначено'
++
++    # Принятие заявки
++    requests_page.accept_request()
++    assert requests_page.wait_for_status('Принято'), 'Статус не изменился на "Принято"'
++    result_text = requests_page.get_status_text()
++    print(f"Результат: {result_text}")
++    assert result_text == 'Принято', 'Статус не изменился'
++
++    # Начало работы над заявкой
++    requests_page.start_request()
++    assert requests_page.wait_for_status('В процессе'), 'Статус не изменился на "В процессе"'
++    result_text = requests_page.get_status_text()
++    print(f"Результат: {result_text}")
++    assert result_text == 'В процессе', 'Статус не изменился'
++
++    # Завершение заявки
++    requests_page.complete_request()
++    requests_page.select_reason_dropdown()
++    requests_page.note_request_input("Тестовый комментарий")
++    requests_page.complete_request_save()
++
++    # Закрытие заявки
++    result_text = requests_page.get_status_text()
++    print(f"Результат: {result_text}")
++    assert result_text == 'Завершено', 'Статус не изменился'
++
++
++def test_close_request(driver):
++    login_page = LoginPage(driver)
++    records_page = RecordsPage(driver)
++    requests_page = RequestsPage(driver)
++
++    login_page.login()
++
++    # Навигация
++    records_page.records_click()
++    records_page.requests_click()
++    records_page.select_account_click()
++    records_page.account_name_click()
++
++    records_page.requested_for_click()
++    records_page.button_edit_click()
++    requests_page.select_status_dropdown()
++    requests_page.select_reason_dropdown()
++    requests_page.note_request_input("Тестовый комментарий")
++    requests_page.complete_request_save()
++
++    # Закрытие заявки
++    result_text = requests_page.get_status_text()
++    print(f"Результат: {result_text}")
++    assert result_text == 'Завершено', 'Статус не изменился'
++
++def test_project_creation(driver):
++    login_page = LoginPage(driver)
++    records_page = RecordsPage(driver)
++    project_page = ProjectsPage(driver)
++
++    login_page.login()
++
++    records_page.records_click()
++    records_page.projects_click()
++    records_page.select_account_click()
++    records_page.account_name_click()
++
++    project_page.add_project_click()
++    project_page.subject_project_input()
++    project_page.program_project_input()
++    project_page.program_project_click()
++    project_page.service_project_input()
++    project_page.service_project_click()
++    project_page.customer_project_input()
++    project_page.customer_project_click()
++    project_page.select_justification()
++    project_page.complete_project_save()
++
++    # Проверка статуса новой заявки
++    result_text = project_page.get_status_project_text()
++    print(f"Результат: {result_text}")
++    assert result_text == 'Зарегистрировано', 'Статус не изменился'
++
++def test_invoice(driver):
++    login_page = LoginPage(driver)
++    records_page = RecordsPage(driver)
++    project_page = ProjectsPage(driver)
++
++    login_page.login()
++
++    records_page.records_click()
++    records_page.projects_click()
++    records_page.select_account_click()
++    records_page.account_name_click()
++
++    project_page.subject_invoice_click()
++    project_page.add_invoice_click()
++    project_page.invoice_supplier_input()
++    project_page.invoice_supplier_click()
++    project_page.invoice_number_input()
++    project_page.invoice_date_input_js("01/09/2025")
++    project_page.invoice_unit_price_input()
++    project_page.invoice_quantity_input()
++    project_page.complete_project_save()
++
++    # Проверка статуса новой заявки
++    result_amount = project_page.get_invoice_amount_text()
++    result_amount_digits = result_amount.lstrip('₽ ')
++    print(f"Результат: {result_amount_digits}")
++    assert result_amount_digits == '120,932.00', 'Сумма инвойса не совпадает'
++
++    time.sleep(2)
++
++def test_account_overview(driver):
++    login_page = LoginPage(driver)
++    records_page = RecordsPage(driver)
++    account_overview_page = AccountOverviewPage(driver)
++
++    login_page.login()
++
++    account_overview_page.settings_click()
++
++    records_page.select_account_click()
++    records_page.account_name_click()
++
++    account_overview_page.account_overview_click()
++
++    # Проверки технических характеристик домена
++    account_overview_page.check_row_values()
++
++    time.sleep(2)
++
++def test_checked_sla(driver):
++    login_page = LoginPage(driver)
++    records_page = RecordsPage(driver)
++
++    login_page.login()
++    records_page.records_click()
++
++    records_page.sla_click()
++    records_page.select_account_click()
++    records_page.account_name_click()
++
++    assert records_page.is_button_add_in_form(), 'Кнопки "+" на форме нет'
++    assert len(records_page.is_table_elements_presents()) > 0
++
++    time.sleep(2)
++
++
++
++
++
++
++
++
++
++
++
++
++
+Index: pages/base_page.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pages/base_page.py b/pages/base_page.py
+new file mode 100644
+--- /dev/null	(date 1758094602787)
++++ b/pages/base_page.py	(date 1758094602787)
+@@ -0,0 +1,62 @@
++from selenium.webdriver.support.ui import WebDriverWait
++from selenium.webdriver.support import expected_conditions as EC
++from selenium.webdriver.support.ui import Select
++import time
++from selenium.common.exceptions import ElementClickInterceptedException
++from conftest import driver
++
++
++class BasePage:
++    def __init__(self, driver):
++        self.driver = driver
++
++    def find_element(self, locator):
++        return WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(locator))
++
++    def find_elements(self, locator):
++        return WebDriverWait(self.driver,10).until(EC.presence_of_all_elements_located(locator))
++
++    def scroll_to_element(self, element):
++        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", element)
++        time.sleep(0.3)
++
++    def click(self, locator):
++        element = WebDriverWait(self.driver,10).until(EC.element_to_be_clickable(locator))
++        self.scroll_to_element(element)
++        try:
++            element.click()
++        except ElementClickInterceptedException:
++            self.driver.execute_script("arguments[0].click();", element)
++
++        return element
++
++    def input_text(self, locator, text):
++        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator))
++        self.scroll_to_element(element)
++        element.send_keys(text)
++        return element
++
++    def select_by_visible_text(self, locator, text):
++        select_element = self.find_element(locator)
++        select = Select(select_element)
++        select.select_by_visible_text(text)
++        return select_element
++
++    def input_date_via_js(self, locator, date_str):
++        """Установка даты через JavaScript"""
++        date_field = WebDriverWait(self.driver, 10).until(
++            EC.presence_of_element_located(locator)
++        )
++
++        # Очистка и установка значения через JS
++        self.driver.execute_script("""
++            arguments[0].value = '';
++            arguments[0].value = arguments[1];
++            arguments[0].dispatchEvent(new Event('change', { bubbles: true }));
++        """, date_field, date_str)
++
++        print(f"Дата установлена через JS: {date_str}")
++
++
++
++
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/inspectionProfiles/profiles_settings.xml b/.idea/inspectionProfiles/profiles_settings.xml
+new file mode 100644
+--- /dev/null	(date 1756906493367)
++++ b/.idea/inspectionProfiles/profiles_settings.xml	(date 1756906493367)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: requirements.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/requirements.txt b/requirements.txt
+new file mode 100644
+--- /dev/null	(date 1758032444739)
++++ b/requirements.txt	(date 1758032444739)
+@@ -0,0 +1,5 @@
++pytest
++selenium
++requests
++allure-pytest
++python-dotenv
+\ No newline at end of file
+Index: conftest.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/conftest.py b/conftest.py
+new file mode 100644
+--- /dev/null	(date 1757312104931)
++++ b/conftest.py	(date 1757312104931)
+@@ -0,0 +1,17 @@
++import pytest
++from selenium import webdriver
++from selenium.webdriver.chrome.options import Options
++
++@pytest.fixture
++def driver():
++    options = Options()
++    # options.headless = True  # если нужен headless-режим – раскомментируйте
++    options.add_argument("--disable-blink-features=BlockCredentialedSubresources")
++    options.add_argument('--ignore-certificate-errors')
++    options.add_argument('--ignore-ssl-errors')
++    driver = webdriver.Chrome(options=options)
++    driver.maximize_window()
++    driver.implicitly_wait(5)
++    yield driver
++    driver.quit()
++
+Index: pytest.ini
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pytest.ini b/pytest.ini
+new file mode 100644
+--- /dev/null	(date 1756911046295)
++++ b/pytest.ini	(date 1756911046295)
+@@ -0,0 +1,2 @@
++[pytest]
++pythonpath = .
+\ No newline at end of file
+Index: data/config.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/data/config.py b/data/config.py
+new file mode 100644
+--- /dev/null	(date 1758096423851)
++++ b/data/config.py	(date 1758096423851)
+@@ -0,0 +1,10 @@
++import os
++from dotenv import load_dotenv
++
++# Загружаем переменные из .env файла
++load_dotenv()
++
++class Config:
++    BASE_URL = os.getenv("BASE_URL")
++    USERNAME = os.getenv("USEREMAIL")
++    PASSWORD = os.getenv("PASSWORD")
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1756906497133)
++++ b/.idea/.gitignore	(date 1756906497133)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1756906625632)
++++ b/.idea/misc.xml	(date 1756906625632)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Black">
++    <option name="sdkName" value="Python 3.13" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1756906493394)
++++ b/.idea/vcs.xml	(date 1756906493394)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1756906493343)
++++ b/.idea/modules.xml	(date 1756906493343)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/autotests.iml" filepath="$PROJECT_DIR$/.idea/autotests.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/autotests.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/autotests.iml b/.idea/autotests.iml
+new file mode 100644
+--- /dev/null	(date 1756906560987)
++++ b/.idea/autotests.iml	(date 1756906560987)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="jdk" jdkName="Python 3.13" jdkType="Python SDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/dictionaries/project.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/dictionaries/project.xml b/.idea/dictionaries/project.xml
+new file mode 100644
+--- /dev/null	(date 1757571890669)
++++ b/.idea/dictionaries/project.xml	(date 1757571890669)
+@@ -0,0 +1,7 @@
++<component name="ProjectDictionaryState">
++  <dictionary name="project">
++    <words>
++      <w>элементы</w>
++    </words>
++  </dictionary>
++</component>
+\ No newline at end of file
+diff --git a/data/__init__.py b/data/__init__.py
+new file mode 100644
+diff --git a/pages/__init__.py b/pages/__init__.py
+new file mode 100644
+diff --git a/tests/__init__.py b/tests/__init__.py
+new file mode 100644
