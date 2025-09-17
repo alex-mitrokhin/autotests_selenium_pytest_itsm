@@ -5,22 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c47cff35-20b4-406a-b9d2-d0bd441f38c6" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/conftest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/base_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/common_methods.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/locators.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/login_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/projects_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/records_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/requests_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_create_project.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_create_request.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_login.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/overview_account_page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_overview_account.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/base_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/common_methods.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/common_methods.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/locators.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/locators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/projects_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/projects_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/records_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/records_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/requests_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/requests_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_create_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_create_project.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_create_request.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_create_request.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/tests.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +78,7 @@
     "Python tests.Python tests for test_login_page.test_login.executor": "Run",
     "Python tests.Python tests for test_login_page.test_sign_in.executor": "Run",
     "Python tests.Python tests for test_login_page.testt.executor": "Run",
+    "Python tests.Python tests for test_overview_account.test_request_creation.executor": "Run",
     "Python tests.Python tests for tests.test_account_overview.executor": "Run",
     "Python tests.Python tests for tests.test_checked_sla.executor": "Run",
     "Python tests.Python tests for tests.test_close_request.executor": "Run",
@@ -173,7 +170,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for tests.test_project_creation" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+    <configuration name="Python tests for test_overview_account.test_request_creation" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="itsm" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -184,7 +181,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests.test_project_creation&quot;" />
+      <option name="_new_target" value="&quot;test_overview_account.test_request_creation&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -193,15 +190,15 @@
       <item itemvalue="Python tests.Python tests for test_create_request.test_request_creation" />
       <item itemvalue="Python tests.Python tests for test_login.test_login" />
       <item itemvalue="Python tests.Python tests for test_login.test_sign_in" />
-      <item itemvalue="Python tests.Python tests for tests.test_project_creation" />
+      <item itemvalue="Python tests.Python tests for test_overview_account.test_request_creation" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Python tests for test_login.test_login" />
-        <item itemvalue="Python tests.Python tests for test_login.test_sign_in" />
+        <item itemvalue="Python tests.Python tests for test_overview_account.test_request_creation" />
         <item itemvalue="Python tests.Python tests for test_create_project.test_project_creation" />
         <item itemvalue="Python tests.Python tests for test_create_request.test_request_creation" />
-        <item itemvalue="Python tests.Python tests for tests.test_project_creation" />
+        <item itemvalue="Python tests.Python tests for test_login.test_sign_in" />
       </list>
     </recent_temporary>
   </component>
@@ -230,6 +227,17 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First_commit" />

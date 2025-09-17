@@ -3,7 +3,6 @@ from pages.login_page import LoginPage
 from pages.requests_page import RequestsPage
 from pages.records_page import RecordsPage
 
-
 def test_request_creation(driver):
     login_page = LoginPage(driver)
     records_page = RecordsPage(driver)
@@ -28,5 +27,5 @@ def test_request_creation(driver):
     requests_page.description_input("Описание")
 
     # Сохранение
-    status_element = requests_page.complete_request_save()
+    status_element = requests_page.complete_save_operation()
     assert requests_page.get_status_text() == 'Назначено'

@@ -1,14 +1,8 @@
 
 from pages.common_methods import CommonMethods
-from pages.locators import ProjectsPageLocators, CommonLocators
+from pages.locators import ProjectsPageLocators, RecordsPageLocators, CommonLocators
 
 class ProjectsPage(CommonMethods):
-
-    def projects_click(self):
-        return self.click(ProjectsPageLocators.BUTTON_PROJECTS)
-
-    def add_project_click(self):
-        return self.click(CommonLocators.BUTTON_ADD)
 
     def subject_project_input(self, text="Тестовый"):
         return self.input_text(ProjectsPageLocators.INPUT_SUBJECT_PROJECT, text)
@@ -40,7 +34,3 @@ class ProjectsPage(CommonMethods):
     def get_status_project_text(self):
         status_element = self.find_element(ProjectsPageLocators.PROJECT_STATUS)
         return status_element.text.strip()
-
-    def complete_project_save(self):
-        """Специфичный метод сохранения для проектов"""
-        return self.complete_save_operation()

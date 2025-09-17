@@ -5,6 +5,26 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 
 class CommonMethods(BasePage):
+    def service_desk_click(self):
+        return self.click(CommonLocators.BUTTON_SERVICE_DESC)
+
+    def records_click(self):
+        return self.click(CommonLocators.BUTTON_RECORDS)
+
+    def settings_click(self):
+        return self.click(CommonLocators.BUTTON_SETTINGS)
+
+    def select_account_click(self):
+        return self.click(CommonLocators.BUTTON_SELECT_ACCOUNT)
+
+    def account_name_click(self):
+        return self.click(CommonLocators.BUTTON_ACCOUNT_NAME)
+
+    def add_click(self):
+        return self.click(CommonLocators.BUTTON_ADD)
+
+    def edit_click(self):
+        return self.click(CommonLocators.BUTTON_EDIT)
 
     def button_save_click(self):
         return self.click(CommonLocators.BUTTON_SAVE)

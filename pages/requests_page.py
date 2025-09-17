@@ -1,10 +1,7 @@
 from pages.common_methods import CommonMethods
-from pages.locators import RequestsPageLocators
+from pages.locators import RequestsPageLocators, CommonLocators
 
 class RequestsPage(CommonMethods):
-
-    def service_desk_click(self):
-        return self.click(RequestsPageLocators.BUTTON_SERVICE_DESC)
 
     def open_request_for_myself_click(self):
         return self.click(RequestsPageLocators.OPEN_REQUEST_FOR_MYSELF)
@@ -53,7 +50,7 @@ class RequestsPage(CommonMethods):
 
     def get_status_text(self):
         status_element = self.find_element(RequestsPageLocators.STATUS_REQUEST)
-        return status_element.text.strip()
+        return status_element.text
 
     def wait_for_status(self, expected_status, timeout=15):
         try:
@@ -64,6 +61,5 @@ class RequestsPage(CommonMethods):
             print(f"Статус не изменился на: {expected_status} в течение {timeout} секунд")
             return False
 
-    def complete_request_save(self):
-        """Специфичный метод сохранения для заявок"""
-        return self.complete_save_operation()
+    def requested_for_click(self):
+        return self.click(RequestsPageLocators.REQUESTED_FOR)

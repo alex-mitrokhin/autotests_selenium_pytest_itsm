@@ -11,12 +11,12 @@ def test_project_creation(driver):
 
     login_page.login()
     records_page.records_click()
-    projects_page.projects_click()
+    records_page.projects_click()
     records_page.select_account_click()
     records_page.account_name_click()
 
     # Создание проекта
-    projects_page.add_project_click()
+    records_page.add_click()
     projects_page.subject_project_input()
     projects_page.program_project_input()
     projects_page.program_project_click()

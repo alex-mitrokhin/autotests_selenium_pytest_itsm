@@ -1,23 +1,25 @@
 from pages.base_page import BasePage
 from pages.common_methods import CommonMethods
-from pages.locators import RecordsPageLocators, CommonLocators
+from pages.locators import RecordsPageLocators, CommonLocators, RequestsPageLocators
 
 class RecordsPage(CommonMethods):
-
-    def records_click(self):
-        return self.click(CommonLocators.BUTTON_RECORDS)
-
     def requests_click(self):
         return self.click(RecordsPageLocators.BUTTON_REQUESTS)
 
-    def select_account_click(self):
-        return self.click(CommonLocators.BUTTON_SELECT_ACCOUNT)
+    def projects_click(self):
+        return self.click(RecordsPageLocators.BUTTON_PROJECTS)
 
-    def account_name_click(self):
-        return self.click(CommonLocators.BUTTON_ACCOUNT_NAME)
+    def services_click(self):
+        return self.click(RecordsPageLocators.BUTTON_SERVICES)
 
-    def requested_for_click(self):
-        return self.click(RecordsPageLocators.REQUESTED_FOR)
+    def service_instances_click(self):
+        return self.click(RecordsPageLocators.BUTTON_SERVICE_INSTANCES)
 
-    def edit_req_click(self):
-        return self.click(CommonLocators.BUTTON_EDIT)
+    def service_offerings_click(self):
+        return self.click(RecordsPageLocators.BUTTON_SERVICE_OFFERINGS)
+
+    def slas_click(self):
+        return self.click(RecordsPageLocators.BUTTON_SLAS)
+
+
+

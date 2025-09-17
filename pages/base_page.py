@@ -2,9 +2,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 import time
-from selenium.common.exceptions import (ElementClickInterceptedException,
-                                      TimeoutException,
-                                      StaleElementReferenceException)
+from selenium.common.exceptions import (ElementClickInterceptedException, StaleElementReferenceException)
 
 class BasePage:
     def __init__(self, driver):

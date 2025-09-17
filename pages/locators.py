@@ -8,7 +8,6 @@ class LoginPageLocators:
     SIGN_IN_BUTTON = (By.ID, 'signin')
 
 class RequestsPageLocators:
-    BUTTON_SERVICE_DESC = (By.CLASS_NAME, 'icon-service-desk')
     OPEN_REQUEST_FOR_MYSELF = (By.XPATH, '//a[text()="Я хочу открыть заявку для себя"]')
 
     DOMAIN_GU_MOSCOW_EXT_CONTR = (By.XPATH, '//span[text()="ДИТ. Госуслуги Москвы. Внешние подрядчики"]')
@@ -21,7 +20,6 @@ class RequestsPageLocators:
     BUTTON_DESCRIPTION_UI = (By.CSS_SELECTOR, 'li#tab_1')
     INPUT_FIELD_DESCRIPTION = (By.CSS_SELECTOR, 'div#ui-extension_description > div > .ProseMirror')
 
-
     BUTTON_DECLINE_REQUEST = (By.CSS_SELECTOR, 'div#toolbar_decline')
     BUTTON_ACCEPT_REQUEST = (By.CSS_SELECTOR, 'div#toolbar_accept')
     BUTTON_START_REQUEST = (By.CSS_SELECTOR, 'div#toolbar_start')
@@ -32,9 +30,9 @@ class RequestsPageLocators:
     DROPDOWN_REASON = (By.ID, 'req_completion_reason')
 
     STATUS_REQUEST = (By.XPATH, '//div[@class="header_bar_section"][4]/div[@class="data"]')
+    REQUESTED_FOR = (By.CSS_SELECTOR, 'span[title*="Митрохин"]')
 
 class ProjectsPageLocators:
-    BUTTON_PROJECTS = (By.CSS_SELECTOR, 'a[href*="/projects"]')
     INPUT_SUBJECT_PROJECT = (By.CSS_SELECTOR, 'input.title_field')
 
     INPUT_SERVICE_PROJECT = (By.ID, 'project_service')
@@ -47,23 +45,25 @@ class ProjectsPageLocators:
     PROJECT_STATUS = (By.XPATH, '//div[@class="header_bar_section"][3]/div[@class="data"]')
 
 class RecordsPageLocators:
-
     BUTTON_REQUESTS = (By.CSS_SELECTOR, 'a[href*="/requests"]')
     BUTTON_REQUEST_TEMPLATES = (By.CSS_SELECTOR, 'a[href*="/request_templates"]')
 
     BUTTON_WORKFLOWS = (By.CSS_SELECTOR, 'a[href*="/workflows"]')
     BUTTON_WORKFLOW_TEMPLATES = (By.CSS_SELECTOR, 'a[href*="/workflow_templates"]')
     BUTTON_TASK_TEMPLATES = (By.CSS_SELECTOR, 'a[href*="/task_templates"]')
+    BUTTON_PROJECTS = (By.CSS_SELECTOR, 'a[href*="/projects"]')
 
-    BUTTON_SERVICE = (By.CSS_SELECTOR, 'a[href*="/services"]')
+    BUTTON_SERVICES = (By.CSS_SELECTOR, 'a[href*="/services"]')
     BUTTON_SERVICE_INSTANCES = (By.CSS_SELECTOR, 'a[href*="/service_instances"]')
+    BUTTON_SERVICE_OFFERINGS = (By.CSS_SELECTOR, 'a[href*="/service_offerings"]')
     BUTTON_SLAS = (By.CSS_SELECTOR, 'a[href*="/slas"]')
     BUTTON_PRODUCTS = (By.CSS_SELECTOR, 'a[href*="/products"]')
     BUTTON_CIS = (By.CSS_SELECTOR, 'a[href=*"/cis"]')
     BUTTON_TEAMS = (By.CSS_SELECTOR, 'a[href*="/teams"]')
 
-    REQUESTED_FOR = (By.CSS_SELECTOR, 'span[title*="Митрохин"]')
-
+class SettingsPageLocators:
+    BUTTON_OVERVIEW_ACCOUNT = (By.CSS_SELECTOR, 'a[href*="/overview"]')
+    ROWS_ACCOUNT_OVERVIEW = (By.CLASS_NAME, 'row-value')
 
 class ModalWindowLocators:
     BUTTON_MODAL_OK = (By.CSS_SELECTOR, 'div.flash-panel-footer > button[aria-label="OK"]')
