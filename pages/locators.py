@@ -54,7 +54,6 @@ class ProjectsPageLocators:
     INPUT_QUANTITY_INVOICE = (By.ID, 'invoice_quantity')
     AMOUNT_INVOICE = (By.CSS_SELECTOR, 'div[class="invoice total"] .amount')
 
-
 class RecordsPageLocators:
     BUTTON_REQUESTS = (By.CSS_SELECTOR, 'a[href*="/requests"]')
     BUTTON_REQUEST_TEMPLATES = (By.CSS_SELECTOR, 'a[href*="/request_templates"]')
@@ -72,9 +71,24 @@ class RecordsPageLocators:
     BUTTON_CIS = (By.CSS_SELECTOR, 'a[href=*"/cis"]')
     BUTTON_TEAMS = (By.CSS_SELECTOR, 'a[href*="/teams"]')
 
+class ServicesPageLocators:
+    ROWS_SERVICE_TABLE = (By.CLASS_NAME, 'grid-row')
+
 class SettingsPageLocators:
-    BUTTON_OVERVIEW_ACCOUNT = (By.CSS_SELECTOR, 'a[href*="/overview"]')
+    BUTTON_OVERVIEW_ACCOUNT = (By.CSS_SELECTOR, '#settings_menu a[href*="/overview"]')
     ROWS_ACCOUNT_OVERVIEW = (By.CLASS_NAME, 'row-value')
+    BUTTON_SURVEYS = (By.CSS_SELECTOR, '#settings_menu a[href*="/surveys"]')
+
+class SurveysPageLocators:
+    INPUT_NAME_SURVEY = (By.ID, 'survey_name')
+    INPUT_QUESTION = (By.ID, 'question-new-0-question')
+    INPUT_WEIGHT = (By.ID, 'question-new-0-weight')
+    BUTTON_SERVICES_SURVEY = (By.CSS_SELECTOR, '.show_more_section .toggler')
+    BUTTON_LINK_SERVICES = (By.CLASS_NAME, 'js-link-records')
+    INPUT_NAME_SERVICE = (By.ID, 'search-q')
+    BUTTON_SELECT_NAME_SERVICE = (By.CSS_SELECTOR, 'div.head.strong')
+    BUTTON_DONE = (By.CSS_SELECTOR, '.right-link .label-x')
+    TITLE_SURVEY = (By.CLASS_NAME, 'title')
 
 class ModalWindowLocators:
     BUTTON_MODAL_OK = (By.CSS_SELECTOR, 'div.flash-panel-footer > button[aria-label="OK"]')

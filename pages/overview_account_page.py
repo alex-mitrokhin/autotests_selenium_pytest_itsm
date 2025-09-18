@@ -1,10 +1,7 @@
 from pages.common_methods import CommonMethods
-from pages.locators import SettingsPageLocators, CommonLocators
+from pages.locators import SettingsPageLocators
 
 class OverviewAccountPage(CommonMethods):
-
-    def overview_account_click(self):
-        return self.click(SettingsPageLocators.BUTTON_OVERVIEW_ACCOUNT)
 
     def check_row_values(self):
         elements = self.find_elements(SettingsPageLocators.ROWS_ACCOUNT_OVERVIEW)

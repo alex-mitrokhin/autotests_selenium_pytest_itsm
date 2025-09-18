@@ -1,6 +1,5 @@
-from pages.base_page import BasePage
 from pages.common_methods import CommonMethods
-from pages.locators import RecordsPageLocators, CommonLocators, RequestsPageLocators
+from pages.locators import RecordsPageLocators
 
 class RecordsPage(CommonMethods):
     def requests_click(self):

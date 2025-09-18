@@ -1,7 +1,7 @@
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from pages.common_methods import CommonMethods
-from pages.locators import ProjectsPageLocators, RecordsPageLocators, CommonLocators
+from pages.locators import ProjectsPageLocators
 
 class ProjectsPage(CommonMethods):
 

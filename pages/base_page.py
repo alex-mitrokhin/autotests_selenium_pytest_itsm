@@ -23,6 +23,10 @@ class BasePage:
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center', behavior: 'smooth'});", element)
         time.sleep(0.3)
 
+    def is_button_add_clickable(self, locator):
+        return WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(locator))
+
     def click(self, locator):
         element = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(locator)

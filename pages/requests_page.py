@@ -1,5 +1,5 @@
 from pages.common_methods import CommonMethods
-from pages.locators import RequestsPageLocators, CommonLocators
+from pages.locators import RequestsPageLocators
 
 class RequestsPage(CommonMethods):
 

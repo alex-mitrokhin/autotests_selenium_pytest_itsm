@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c47cff35-20b4-406a-b9d2-d0bd441f38c6" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/tests/test_add_invoice_in_project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/services_page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/settings_page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/surveys_page.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_add_survey.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/test_checking_services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/base_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/locators.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/locators.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/login_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/overview_account_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/overview_account_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/projects_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/projects_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_create_project.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_create_project.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/records_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/records_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/requests_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/requests_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_overview_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_overview_account.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +68,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python tests.Python tests for test_add_invoice_in_project.test_add_invoice_in_project.executor": "Run",
+    "Python tests.Python tests for test_add_survey.test_add_survey.executor": "Run",
     "Python tests.Python tests for test_checked_sla.test_checked_sla.executor": "Run",
+    "Python tests.Python tests for test_checking_services.test_checking_services.executor": "Run",
     "Python tests.Python tests for test_create_project.test_add_invoice.executor": "Run",
     "Python tests.Python tests for test_create_project.test_project_creation.executor": "Run",
     "Python tests.Python tests for test_create_request.test_request_creation.executor": "Run",
@@ -104,7 +115,7 @@
       <recent name="C:\Users\aleksey.mitrokhin\PycharmProjects\autotests\pages" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Python tests for test_add_invoice_in_project.test_add_invoice_in_project">
+  <component name="RunManager" selected="Python tests.Python tests for test_add_survey.test_add_survey">
     <configuration name="Python tests for test_add_invoice_in_project.test_add_invoice_in_project" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="itsm" />
       <option name="ENV_FILES" value="" />
@@ -117,6 +128,36 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;test_add_invoice_in_project.test_add_invoice_in_project&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_add_survey.test_add_survey" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="itsm" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_add_survey.test_add_survey&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_checking_services.test_checking_services" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="itsm" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_checking_services.test_checking_services&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -135,21 +176,6 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_create_project.test_project_creation" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="itsm" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_create_project.test_project_creation&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <configuration name="Python tests for test_login.test_login" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
       <module name="itsm" />
       <option name="ENV_FILES" value="" />
@@ -165,35 +191,20 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Python tests for test_overview_account.test_request_creation" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
-      <module name="itsm" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;test_overview_account.test_request_creation&quot;" />
-      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python tests.Python tests for test_add_invoice_in_project.test_add_invoice_in_project" />
+      <item itemvalue="Python tests.Python tests for test_add_survey.test_add_survey" />
+      <item itemvalue="Python tests.Python tests for test_checking_services.test_checking_services" />
       <item itemvalue="Python tests.Python tests for test_create_project.test_add_invoice" />
-      <item itemvalue="Python tests.Python tests for test_create_project.test_project_creation" />
       <item itemvalue="Python tests.Python tests for test_login.test_login" />
-      <item itemvalue="Python tests.Python tests for test_overview_account.test_request_creation" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Python tests for test_add_survey.test_add_survey" />
+        <item itemvalue="Python tests.Python tests for test_checking_services.test_checking_services" />
         <item itemvalue="Python tests.Python tests for test_add_invoice_in_project.test_add_invoice_in_project" />
         <item itemvalue="Python tests.Python tests for test_create_project.test_add_invoice" />
         <item itemvalue="Python tests.Python tests for test_login.test_login" />
-        <item itemvalue="Python tests.Python tests for test_overview_account.test_request_creation" />
-        <item itemvalue="Python tests.Python tests for test_create_project.test_project_creation" />
       </list>
     </recent_temporary>
   </component>
