@@ -39,6 +39,7 @@ class BasePage:
             EC.element_to_be_clickable(locator)
         )
         self.scroll_to_element(element)
+        element.clear()
         element.send_keys(text)
         return element
 

@@ -3,7 +3,6 @@ from pages.login_page import LoginPage
 from pages.records_page import RecordsPage
 from pages.projects_page import ProjectsPage
 
-
 def test_project_creation(driver):
     login_page = LoginPage(driver)
     records_page = RecordsPage(driver)

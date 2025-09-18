@@ -44,6 +44,17 @@ class ProjectsPageLocators:
     BUTTON_SELECT_CUSTOMER_PROJECT = (By.XPATH, '//div[@class="head strong"]//span[starts-with(text(), "ДИТ")]')
     PROJECT_STATUS = (By.XPATH, '//div[@class="header_bar_section"][3]/div[@class="data"]')
 
+    EXISTING_PROJECT = (By.CSS_SELECTOR, '.cell-manager span[title*="Митрохин"]')
+    BUTTON_ADD_INVOICE = (By.ID, 'invoice_add')
+    INPUT_SUPPLIER_INVOICE = (By.ID, 'invoice_supplier')
+    BUTTON_SELECT_SUPPLIER = (By.XPATH, '//div[@class="head strong"]//span[starts-with(text(), "ДИТ")]')
+    INPUT_NUMBER_INVOICE = (By.ID, 'invoice_invoice_nr')
+    INPUT_DATE_INVOICE = (By.ID, 'invoice_invoice_date_date_str')
+    INPUT_UNIT_PRICE_INVOICE = (By.ID, 'invoice_unit_price')
+    INPUT_QUANTITY_INVOICE = (By.ID, 'invoice_quantity')
+    AMOUNT_INVOICE = (By.CSS_SELECTOR, 'div[class="invoice total"] .amount')
+
+
 class RecordsPageLocators:
     BUTTON_REQUESTS = (By.CSS_SELECTOR, 'a[href*="/requests"]')
     BUTTON_REQUEST_TEMPLATES = (By.CSS_SELECTOR, 'a[href*="/request_templates"]')
