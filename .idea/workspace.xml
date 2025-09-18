@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c47cff35-20b4-406a-b9d2-d0bd441f38c6" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/pages/services_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/settings_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/surveys_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_add_survey.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/test_checking_services.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/base_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/base_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/locators.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/locators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/overview_account_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/overview_account_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/projects_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/projects_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/records_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/records_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/requests_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/requests_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_overview_account.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_overview_account.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,47 +52,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python tests.Python tests for test_add_invoice_in_project.test_add_invoice_in_project.executor": "Run",
-    "Python tests.Python tests for test_add_survey.test_add_survey.executor": "Run",
-    "Python tests.Python tests for test_checked_sla.test_checked_sla.executor": "Run",
-    "Python tests.Python tests for test_checking_services.test_checking_services.executor": "Run",
-    "Python tests.Python tests for test_create_project.test_add_invoice.executor": "Run",
-    "Python tests.Python tests for test_create_project.test_project_creation.executor": "Run",
-    "Python tests.Python tests for test_create_request.test_request_creation.executor": "Run",
-    "Python tests.Python tests for test_login.test_login.executor": "Run",
-    "Python tests.Python tests for test_login.test_sign_in.executor": "Run",
-    "Python tests.Python tests for test_login_page.test_close_request.executor": "Run",
-    "Python tests.Python tests for test_login_page.test_create_request.executor": "Run",
-    "Python tests.Python tests for test_login_page.test_creation_processing_completion.executor": "Run",
-    "Python tests.Python tests for test_login_page.test_guest_can_login.executor": "Run",
-    "Python tests.Python tests for test_login_page.test_login.executor": "Run",
-    "Python tests.Python tests for test_login_page.test_sign_in.executor": "Run",
-    "Python tests.Python tests for test_login_page.testt.executor": "Run",
-    "Python tests.Python tests for test_overview_account.test_request_creation.executor": "Run",
-    "Python tests.Python tests for tests.test_account_overview.executor": "Run",
-    "Python tests.Python tests for tests.test_checked_sla.executor": "Run",
-    "Python tests.Python tests for tests.test_close_request.executor": "Run",
-    "Python tests.Python tests for tests.test_creation_processing_completion.executor": "Run",
-    "Python tests.Python tests for tests.test_invoice.executor": "Run",
-    "Python tests.Python tests for tests.test_project_creation.executor": "Run",
-    "Python tests.Python tests for tests.test_projects.executor": "Run",
-    "Python tests.Python tests for tests.test_request_creation.executor": "Run",
-    "Python tests.Python tests for tests.test_request_creation_processing_completion.executor": "Run",
-    "Python tests.Python tests for tests.test_sign_in (1).executor": "Run",
-    "Python tests.Python tests for tests.test_sign_in.executor": "Run",
-    "Python.config.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/aleksey.mitrokhin/PycharmProjects/itsm/tests",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python tests.Python tests for test_add_invoice_in_project.test_add_invoice_in_project.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_add_survey.test_add_survey.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_checked_sla.test_checked_sla.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_checking_services.test_checking_services.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_create_project.test_add_invoice.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_create_project.test_project_creation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_create_request.test_request_creation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login.test_login.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login.test_sign_in.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login_page.test_close_request.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login_page.test_create_request.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login_page.test_creation_processing_completion.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login_page.test_guest_can_login.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login_page.test_login.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login_page.test_sign_in.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_login_page.testt.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for test_overview_account.test_request_creation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_account_overview.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_checked_sla.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_close_request.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_creation_processing_completion.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_invoice.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_project_creation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_projects.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_request_creation.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_request_creation_processing_completion.executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_sign_in (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python tests.Python tests for tests.test_sign_in.executor&quot;: &quot;Run&quot;,
+    &quot;Python.config.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/aleksey.mitrokhin/PycharmProjects/itsm/tests&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\aleksey.mitrokhin\PycharmProjects\itsm\tests" />
